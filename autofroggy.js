@@ -1,98 +1,43 @@
-// gunSketch.js (p5.js)
-// Draws a simple stylized gun icon on a canvas (visual only).
-
-let hover = false;
-
 function setup() {
-  const canvas = createCanvas(420, 260);
-  canvas.parent("autofroggy"); // change to your div id if needed
-  textFont("sans-serif");
+  createCanvas(300, 300);
+  angleMode(DEGREES);
 }
 
 function draw() {
-  background("#0d1b2a");
+  background(240);
 
-  // hover if mouse is over the gun body area
-  hover = mouseX > 70 && mouseX < 360 && mouseY > 70 && mouseY < 190;
+  // check if mouse is near the guy
+  const hovering =
+    mouseX > 110 && mouseX < 190 &&
+    mouseY > 40 && mouseY < 240;
 
-  // subtle glow on hover
-  if (hover) {
-    noStroke();
-    fill(119, 141, 169, 60); // #778da9 with alpha
-    rect(55, 55, 330, 150, 18);
-  }
+  stroke(0);
+  strokeWeight(4);
+  noFill();
 
-  drawGun(hover);
+  // head
+  ellipse(150, 70, 50, 50);
 
-  // label text
+  // body
+  line(150, 95, 150, 180);
+
+  // left arm (static)
+  line(150, 120, 110, 150);
+
+  // right arm (waves on hover)
+  push();
+  translate(150, 120); // shoulder pivot
+  rotate(hovering ? sin(frameCount * 6) * 30 : 0);
+  line(0, 0, 40, 30);
+  pop();
+
+  // legs
+  line(150, 180, 120, 240);
+  line(150, 180, 180, 240);
+
+  // hint text
   noStroke();
-  fill("#e0e1dd");
-  textSize(16);
+  fill(80);
   textAlign(CENTER);
-  text(hover ? "pew!" : "hover me", width / 2, 235);
-}
-
-function drawGun(isHover) {
-  // palette
-  const metal = color("#e0e1dd");
-  const darkMetal = color("#778da9");
-  const accent = isHover ? color("#778da9") : color("#1b263b");
-
-  // barrel + slide
-  noStroke();
-  fill(darkMetal);
-  rect(120, 85, 210, 42, 10);          // slide
-  rect(320, 95, 35, 22, 6);            // barrel tip
-
-  // muzzle hole
-  fill("#0d1b2a");
-  ellipse(345, 106, 10, 10);
-
-  // ejection port detail
-  fill(metal);
-  rect(210, 93, 55, 16, 4);
-
-  // frame
-  fill(accent);
-  rect(105, 120, 240, 38, 10);
-
-  // trigger guard
-  fill(darkMetal);
-  beginShape();
-  vertex(190, 158);
-  vertex(240, 158);
-  vertex(252, 178);
-  vertex(232, 196);
-  vertex(190, 196);
-  vertex(176, 178);
-  endShape(CLOSE);
-
-  // trigger
-  fill(metal);
-  rect(216, 165, 10, 22, 5);
-
-  // grip
-  fill(darkMetal);
-  beginShape();
-  vertex(150, 158);
-  vertex(195, 158);
-  vertex(185, 240);
-  vertex(132, 240);
-  endShape(CLOSE);
-
-  // grip texture lines
-  stroke(metal);
-  strokeWeight(2);
-  for (let y = 170; y <= 230; y += 10) {
-    line(140, y, 185, y);
-  }
-
-  // small sight
-  noStroke();
-  fill(metal);
-  rect(135, 78, 20, 10, 4);
-
-  // tiny highlight
-  fill(255, 255, 255, 30);
-  rect(130, 90, 160, 10, 10);
-}
+  textSize(14);
+  text(hovering ? "👋 hey!" : "hover me", width / 2, 280);
