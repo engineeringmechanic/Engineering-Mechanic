@@ -17,7 +17,7 @@ to this section's matching END comment to see page-specific styles.
 :root {
   --color-bg: #415a77;
   --color-text-main: #e0e1dd;
-  --color-primary: #778da9;
+  --color-primary: #F5A860;
   --wrapper-height: 87vh;
   --image-max-width: 300px;
   --image-margin: 3rem;
@@ -75,7 +75,7 @@ body {
 }
 
 b2{
-  color: #778da9;
+  color: #F5A860;
 }
 
 .projectOverview {
@@ -116,7 +116,7 @@ footer{
 /* Subheading */
 
 h2 {
-  color: #778da9;
+  color: #F5A860;
   font-size: 10vw;
   text-align: left;
   font-family: Altone, sans-serif;
@@ -190,7 +190,7 @@ p3h {
   font-size: 30px;
   font-family: bahn, sans-serif;
   font-weight: bold;
-  color: #778da9;
+  color: #F5A860;
   padding-top: 10px;
 }
 
@@ -750,7 +750,7 @@ aside2 {
 }
 
 .ui.menu .item:hover {
-  color: #778da9 !important;
+  color: #F5A860 !important;
 }
 
 /* sligmaballs */
