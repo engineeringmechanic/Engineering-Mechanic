@@ -743,5 +743,15 @@ aside2 {
   }
 }
 
+
+/* FIX Semantic UI menu text color */
+.ui.menu .item {
+  color: #e0e1dd !important;
+}
+
+.ui.menu .item:hover {
+  color: #778da9 !important;
+}
+
 /* sligmaballs */
 
