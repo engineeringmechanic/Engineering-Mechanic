@@ -100,7 +100,7 @@ dfn {
 }
 mark {
   background-color: #ff0;
-  color: #000;
+  color: #e0e1dd;
 }
 small {
   font-size: 80%;
@@ -1465,19 +1465,19 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 }
 .ui.inverted.black.button:hover,
 .ui.inverted.black.buttons .button:hover {
-  background-color: #000;
+  background-color: #e0e1dd;
 }
 .ui.inverted.black.button:focus,
 .ui.inverted.black.buttons .button:focus {
-  background-color: #000;
+  background-color: #e0e1dd;
 }
 .ui.inverted.black.active.button,
 .ui.inverted.black.buttons .active.button {
-  background-color: #000;
+  background-color: #e0e1dd;
 }
 .ui.inverted.black.button:active,
 .ui.inverted.black.buttons .button:active {
-  background-color: #000;
+  background-color: #e0e1dd;
 }
 .ui.inverted.black.basic.button,
 .ui.inverted.black.basic.buttons .button,
@@ -1489,24 +1489,24 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.black.basic.button:hover,
 .ui.inverted.black.basic.buttons .button:hover,
 .ui.inverted.black.buttons .basic.button:hover {
-  box-shadow: 0 0 0 2px #000 inset !important;
+  box-shadow: 0 0 0 2px #e0e1dd inset !important;
   color: #fff !important;
 }
 .ui.inverted.black.basic.button:focus,
 .ui.inverted.black.basic.buttons .button:focus {
-  box-shadow: 0 0 0 2px #000 inset !important;
+  box-shadow: 0 0 0 2px #e0e1dd inset !important;
   color: #545454 !important;
 }
 .ui.inverted.black.basic.active.button,
 .ui.inverted.black.basic.buttons .active.button,
 .ui.inverted.black.buttons .basic.active.button {
-  box-shadow: 0 0 0 2px #000 inset !important;
+  box-shadow: 0 0 0 2px #e0e1dd inset !important;
   color: #fff !important;
 }
 .ui.inverted.black.basic.button:active,
 .ui.inverted.black.basic.buttons .button:active,
 .ui.inverted.black.buttons .basic.button:active {
-  box-shadow: 0 0 0 2px #000 inset !important;
+  box-shadow: 0 0 0 2px #e0e1dd inset !important;
   color: #fff !important;
 }
 .ui.grey.button,
@@ -21516,7 +21516,7 @@ a.ui.card:hover {
 .ui.disabled.checkbox label {
   cursor: default !important;
   opacity: 0.5;
-  color: #000;
+  color: #e0e1dd;
 }
 .ui.checkbox input.hidden {
   z-index: -1;
@@ -21669,7 +21669,7 @@ a.ui.card:hover {
 }
 .ui.slider.checkbox input:focus:checked ~ .box:before,
 .ui.slider.checkbox input:focus:checked ~ label:before {
-  background-color: #000 !important;
+  background-color: #e0e1dd !important;
 }
 .ui.toggle.checkbox {
   min-height: 1.5rem;
