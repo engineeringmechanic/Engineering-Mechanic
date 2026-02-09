@@ -1,167 +1,98 @@
-let speech = "welcome!";
-let speech2 = "AAAAAAHHHHHUGUHGH";
-let circleHover = false;
-var cx = 110;
-var cy = 115;
-var cx1 = 240;
-var cy1 = 80;
-var cx2 = 200;
-var cy2 = 40;
-var cr = 13;
-var speed = 5;
-let counter = 0; // Variable to count number of frames
-let counterSpeed = 0.5;
-let pause = true;
+// gunSketch.js (p5.js)
+// Draws a simple stylized gun icon on a canvas (visual only).
 
-let myColour, myColour2, myColour3; //Keep track of our random colour.
-
-
-function windowResized() {
-  resizeCanvas
-}
+let hover = false;
 
 function setup() {
-  colorMode(HSB, 100);
-  canvas = createCanvas(350,350);
-
-  canvas.parent("autofroggy");
-
-  // canvas.position(100,100);
-
-  myColour = color(random(100), random(10, 25), random(220, 255));
-  frameRate(30);
-
-  myColour2 = color(random(0, 100), random(30, 70), random(100, 150));
-  frameRate(30);
-
-  myColour3 = color(random(150), random(150), random(150));
-  frameRate(30);
+  const canvas = createCanvas(420, 260);
+  canvas.parent("autofroggy"); // change to your div id if needed
+  textFont("sans-serif");
 }
 
 function draw() {
-  background(myColour);
+  background("#0d1b2a");
 
-  //when the counter reaches 30,
-  if (counter > 19) {
-    //switch the colour to a new random colour:
-    myColour = color(random(100), random(10, 25), random(220, 255));
-    myColour2 = color(random(0, 100), random(30, 70), random(100, 150));
-    myColour3 = color(random(0, 100), random(30, 70), random(50, 80));
+  // hover if mouse is over the gun body area
+  hover = mouseX > 70 && mouseX < 360 && mouseY > 70 && mouseY < 190;
 
-    //and reset the counter to zero:
-    counter = 0;
+  // subtle glow on hover
+  if (hover) {
+    noStroke();
+    fill(119, 141, 169, 60); // #778da9 with alpha
+    rect(55, 55, 330, 150, 18);
   }
 
-  //At the end of each frame increase the counter
-  counter = counter + counterSpeed;
+  drawGun(hover);
 
-  //body
-  stroke(myColour);
-  strokeWeight(4);
-  fill(myColour2);
-  beginShape();
-  vertex(80, 130);
-  bezierVertex(80, 80, 140, 100, 200, 75);
-  bezierVertex(240, 50, 240, 50, 300, 75);
-  bezierVertex(340, 100, 360, 100, 410, 200);
-  vertex(410, 410);
-  vertex(80, 410);
-  bezierVertex(50, 360, 50, 340, 80, 250);
-  bezierVertex(40, 220, 40, 220, 20, 195);
-  vertex(30, 190);
-  bezierVertex(40, 160, 60, 160, 80, 130);
-  endShape();
-
-  //mouth
-  noFill();
-  stroke(myColour3);
-  beginShape();
-  vertex(25, 196);
-  bezierVertex(160, 140, 200, 135, 300, 120);
-  endShape();
-
-  //shading
+  // label text
   noStroke();
-  fill(myColour3);
-  beginShape();
-  vertex(410, 200);
-  vertex(410, 410);
-  vertex(80, 410);
-  bezierVertex(300, 360, 360, 280, 410, 200);
-  endShape();
-
-  //eyes
-  if (overCircle(cx, cy, cr)) {
-    cx = cx + random(-speed, speed);
-    cy = cy + random(-speed, speed);
-  }
-
-  ellipse(cx, cy, cr * 2, cr * 1.2);
-
-  if (overCircle(cx1, cy1, cr)) {
-    cx1 = cx1 + random(-speed, speed);
-    cy1 = cy1 + random(-speed, speed);
-  }
-
-  if (overCircle(cx2, cy2, cr)) {
-    cx2 = cx2 + random(-speed, speed);
-    cy2 = cy2 + random(-speed, speed);
-  }
-
-  ellipse(cx1, cy1, cr * 2.5, cr * 1.5);
-
-  textSize(15);
+  fill("#e0e1dd");
+  textSize(16);
   textAlign(CENTER);
-
-  textSize(32);
-  if (!circleHover) {
-    text(speech, cx2, cy2);
-  } else {
-    text(speech2, cx2, cy2);
-  }
-
-  if (!pause) {
-    counterSpeed = 0;
-  } else {
-  }
-
-  fill(myColour);
-  textSize(15);
-  text("rub my tummy", 140, 340);
+  text(hover ? "pew!" : "hover me", width / 2, 235);
 }
 
-function overCircle(x, y, r) {
-  if (dist(200, 250, mouseX, mouseY) < r * 6) {
-    circleHover = true;
-    counterSpeed = 2;
-    return true;
-  } else {
-    circleHover = false;
-    counterSpeed = 0.5;
+function drawGun(isHover) {
+  // palette
+  const metal = color("#e0e1dd");
+  const darkMetal = color("#778da9");
+  const accent = isHover ? color("#778da9") : color("#1b263b");
 
-    cx = 110;
-    cy = 115;
-    cx1 = 240;
-    cy1 = 80;
-    cx2 = 175;
-    cy2 = 40;
+  // barrel + slide
+  noStroke();
+  fill(darkMetal);
+  rect(120, 85, 210, 42, 10);          // slide
+  rect(320, 95, 35, 22, 6);            // barrel tip
 
-    return false;
+  // muzzle hole
+  fill("#0d1b2a");
+  ellipse(345, 106, 10, 10);
+
+  // ejection port detail
+  fill(metal);
+  rect(210, 93, 55, 16, 4);
+
+  // frame
+  fill(accent);
+  rect(105, 120, 240, 38, 10);
+
+  // trigger guard
+  fill(darkMetal);
+  beginShape();
+  vertex(190, 158);
+  vertex(240, 158);
+  vertex(252, 178);
+  vertex(232, 196);
+  vertex(190, 196);
+  vertex(176, 178);
+  endShape(CLOSE);
+
+  // trigger
+  fill(metal);
+  rect(216, 165, 10, 22, 5);
+
+  // grip
+  fill(darkMetal);
+  beginShape();
+  vertex(150, 158);
+  vertex(195, 158);
+  vertex(185, 240);
+  vertex(132, 240);
+  endShape(CLOSE);
+
+  // grip texture lines
+  stroke(metal);
+  strokeWeight(2);
+  for (let y = 170; y <= 230; y += 10) {
+    line(140, y, 185, y);
   }
+
+  // small sight
+  noStroke();
+  fill(metal);
+  rect(135, 78, 20, 10, 4);
+
+  // tiny highlight
+  fill(255, 255, 255, 30);
+  rect(130, 90, 160, 10, 10);
 }
-
-function mouseClicked(x, y, r) {
-  if (dist(mouseX, mouseY, cx, cy) < 13) {
-    pause = !pause;
-  }
-
-  // if (dist(mouseX, mouseY, cx1, cy1) < 13) {
-  //   save("myFroggy.png");
-  // }
-}
-
-// function keyTyped() {
-//   if (key === "s") {
-//     save("froggy.png");
-//   }
-// }
